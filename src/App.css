@@ -1,3 +1,12 @@
 .btn {
+  width: auto;
+  font-size: 14px;
+  padding: 8px 15px;
+}
+
+
+.small-select {
+  font-size: 14px;
+  padding: 3px 15px;    
   width: 120px;
 }

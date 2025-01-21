@@ -75,11 +75,11 @@ export default function TextForm(props) {
 
     return (
         <>
-        <div>
+        <div className='container' style={{backgroundColor: props.mode === 'dark'? 'white': 'black'}}>
             <h1>{props.heading}</h1>
             <div className='row'>
                 <div className="col-md-2">
-                    <select className="form-select" value={language} onChange={handleOnChangeLanguage}>
+                    <select className="form-select small-select" value={language} onChange={handleOnChangeLanguage}>
                         <option value="es">Spanish</option>
                         <option value="fr">French</option>
                         <option value="de">German</option>
@@ -88,7 +88,8 @@ export default function TextForm(props) {
                 </div>
             </div>
             <div className="my-3">
-                <textarea onChange={handleOnChange}  className="form-control" id="myBox" rows="8" value={text}></textarea>
+                <textarea onChange={handleOnChange}  className="form-control" style={{backgroundColor: props.mode === 'dark'? 'grey': '', 
+                color: props.mode === 'dark'? 'white': 'black'}} id="myBox" rows="8" value={text}></textarea>
             </div>
             <div  className='row'>
                 <button onClick={handleUpClick} className='btn btn-primary mx-2'>Upper Case</button>
@@ -100,12 +101,12 @@ export default function TextForm(props) {
             </div>
         </div>
         
-        <div className='my-2'>
+        <div className='container my-2' style={{backgroundColor: props.mode === 'dark'? 'grey': '', color: props.mode === 'dark'? 'white': 'black'}}>
             <h1>Your text summary</h1>
             <p>{text.split(" ").length} words and {text.length} characters</p>
             <p>{0.008 * text.split(" ").length}  Minutes read</p>
             <h2>Preview</h2>
-            <p>{text}</p>
+            <p>{text.length >0 ? text: "Enter something in the text above to preview here"}</p>
         </div>
     </>
     )
