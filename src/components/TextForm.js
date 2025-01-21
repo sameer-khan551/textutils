@@ -26,6 +26,18 @@ export default function TextForm(props) {
         
     }
 
+    const hanldeExtraSpaces = () => {
+        let newText = text.split(/[ ]+/);
+        setText(newText.join(" "));     
+    }
+
+    const handleCopy = () => {
+        var text = document.getElementById('myBox')
+        text.select();
+        text.setSelectionRange(0,9999);
+        navigator.clipboard.writeText(text.value)
+    }
+
     const handleTranslate = async () => {
         if (!text || !language) {
             console.error('Text or language is missing');
@@ -82,6 +94,8 @@ export default function TextForm(props) {
                 <button onClick={handleUpClick} className='btn btn-primary mx-2'>Upper Case</button>
                 <button onClick={handleLoClick} className='btn btn-secondary mx-2'>Lower Case</button>
                 <button onClick={handleTranslate} className='btn btn-secondary mx-2'>Translate</button>
+                <button onClick={handleCopy} className='btn btn-secondary mx-2'>Copy</button>
+                <button onClick={hanldeExtraSpaces} className='btn btn-secondary mx-2'>Remove Extra Spaces</button>
                 <button onClick={handleClearClick} className='btn btn-danger mx-2'>Clear</button>
             </div>
         </div>
