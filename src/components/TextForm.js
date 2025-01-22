@@ -6,15 +6,18 @@ export default function TextForm(props) {
     const handleUpClick = () => {
         let newText = text.toUpperCase()
         setText(newText)
+        props.showAlert('Converted to Upper Case', 'success')
     }
 
     const handleLoClick = () => {
         let newText = text.toLowerCase()
         setText(newText)
+        props.showAlert('Converted to Lower Case', 'success')
     }
 
     const handleClearClick = () => {
         setText('')
+        props.showAlert('Text box cleared', 'success')
     }
 
     const handleOnChange = (event) => {
@@ -29,6 +32,7 @@ export default function TextForm(props) {
     const hanldeExtraSpaces = () => {
         let newText = text.split(/[ ]+/);
         setText(newText.join(" "));     
+        props.showAlert('Extra spaces removed', 'success')
     }
 
     const handleCopy = () => {
@@ -36,6 +40,7 @@ export default function TextForm(props) {
         text.select();
         text.setSelectionRange(0,9999);
         navigator.clipboard.writeText(text.value)
+        props.showAlert('Text copied', 'success')
     }
 
     const handleTranslate = async () => {
@@ -75,9 +80,8 @@ export default function TextForm(props) {
 
     return (
         <>
-        <div className='container' style={{backgroundColor: props.mode === 'dark'? 'white': 'black'}}>
+        <div className='container' style={{color: props.mode === 'dark'? 'white': '#042743'}}>
             <h1>{props.heading}</h1>
-            <div className='row'>
                 <div className="col-md-2">
                     <select className="form-select small-select" value={language} onChange={handleOnChangeLanguage}>
                         <option value="es">Spanish</option>
@@ -86,22 +90,20 @@ export default function TextForm(props) {
                         <option value="it">Italian</option>
                     </select>
                 </div>
-            </div>
-            <div className="my-3">
-                <textarea onChange={handleOnChange}  className="form-control" style={{backgroundColor: props.mode === 'dark'? 'grey': '', 
-                color: props.mode === 'dark'? 'white': 'black'}} id="myBox" rows="8" value={text}></textarea>
-            </div>
-            <div  className='row'>
+                <div className="my-3">
+                    <textarea onChange={handleOnChange}  className="form-control" style={{backgroundColor: props.mode === 'dark'? 'grey': 'white', 
+                    color: props.mode === 'dark'? 'white': '#042743'}} id="myBox" rows="8" value={text}></textarea>
+                </div>
                 <button onClick={handleUpClick} className='btn btn-primary mx-2'>Upper Case</button>
                 <button onClick={handleLoClick} className='btn btn-secondary mx-2'>Lower Case</button>
                 <button onClick={handleTranslate} className='btn btn-secondary mx-2'>Translate</button>
                 <button onClick={handleCopy} className='btn btn-secondary mx-2'>Copy</button>
                 <button onClick={hanldeExtraSpaces} className='btn btn-secondary mx-2'>Remove Extra Spaces</button>
                 <button onClick={handleClearClick} className='btn btn-danger mx-2'>Clear</button>
-            </div>
+    
         </div>
         
-        <div className='container my-2' style={{backgroundColor: props.mode === 'dark'? 'grey': '', color: props.mode === 'dark'? 'white': 'black'}}>
+        <div className='container my-2' style={{color: props.mode === 'dark'? 'white': '#042743',}}>
             <h1>Your text summary</h1>
             <p>{text.split(" ").length} words and {text.length} characters</p>
             <p>{0.008 * text.split(" ").length}  Minutes read</p>
