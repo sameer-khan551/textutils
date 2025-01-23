@@ -29,7 +29,7 @@ export default function About() {
         }
        
     }
-        
+
     return (
         <div className='container' style={myStyle} >
             <h1 className='my-2'>About Us</h1>
